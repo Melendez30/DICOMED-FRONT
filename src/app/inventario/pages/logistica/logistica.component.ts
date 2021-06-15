@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { InventarioService } from '../../services/inventario.service';
 
 declare var $:any;
+// import * as $ from 'jquery';
 
 @Component({
   selector: 'app-logistica',
@@ -87,11 +88,8 @@ export class LogisticaComponent implements OnInit {
       actions:{
         custom:[
           {
-            icon:'En transito', title:'En transito'
+            icon:'Detalles', title:'Detalles'
           },
-          {
-            name:'Entregado', title:'  Entregado'
-          }
         ],
         columnTitle:'',
         add:false,
@@ -158,10 +156,12 @@ hi(){
   }
 
 abrirdetalles(event){
+  console.log(event);
   this.nombre = event.data.nombre;
   this.temporal = event.data;
   this.productosDetalle.patchValue(event.data);
   this.banderaeditar=false;
+  $('#d').modal('show');
 }
 
 cancelaredicion(){

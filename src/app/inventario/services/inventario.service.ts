@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class InventarioService {
 
   protocolo='http';
-  url = '192.168.0.14:3000'
+  url = '192.168.1.79:3000'
   
 
     constructor(private http:HttpClient) { 
