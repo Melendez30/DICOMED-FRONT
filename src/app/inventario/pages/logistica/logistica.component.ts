@@ -71,8 +71,7 @@ export class LogisticaComponent implements OnInit {
             title: 'Fecha de salida',
             editable:false
           },
-  
-          
+     
           num_guia: {
             title: 'Número de guía',
             editable:false
@@ -81,9 +80,7 @@ export class LogisticaComponent implements OnInit {
           orden_compra: {
             title: 'Orden de compra',
             editable:false
-          }
-          
-        
+          }    
       },
       actions:{
         custom:[

@@ -1,4 +1,53 @@
-<h1 align="center"><b>Logistica</b></h1>
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    DIstribuidora y Comercio de Medicamentos (DICOMED)
+                </div>
+                <div class="card-body">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+                        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+                        <!-- <button aria-controls="navbarSupportedContent" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" class="navbar-toggler" type="button" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button> -->
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/pantallaprincipal/inicio">Inicio<span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Registrarse</a>
+                                </li>
+                                <!-- <li class="nav-item dropdown" dropdown>
+                                    <a id="link-dropdown" class="nav-link dropdown-toggle" href dropdownToggle (click)="false" aria-controls="your-dropdown">
+                                    Dropdown
+                                    </a>
+                                    <div id="your-dropdown" class="dropdown-menu" aria-labelledby="link-dropdown" *dropdownMenu>
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </li> -->
+
+                            </ul>
+                            <!-- <form class="form-inline my-2 my-lg-0">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button>
+                            </form> -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<h1 align="center">
+    <b>Logistica</b></h1>
 <br>
 <div align="center">
     <img src="assets/logistic.jpg" width="1100" height="350">
@@ -14,22 +63,100 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Seguimiento administrativo</h5>
+                    <!-- <h2 class="modal-title">Seguimiento administrativo</h2> -->
+                    <h3> 
+                    <b>
+                        <img src="assets/step.jpg" align="right"  width="140" height="55" style="border:10;" > Seguimiento administrativo
+                    </b>
+                    </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body">
                     <!-- <p>{{ temporal | json }}</p> -->
+                    <h5>Documentación.</h5>
+                    <br>
                     <form>
                         <div class="row">
                             <div class="col-sm-4">
+                                
+                                <div clas="table-responsive">
+                                    <table class="table table-bordered" >
+                                        <thead>
+                                        <tr>
+                                            <th>Documento</th>
+                                            <th>PDF</th>
+                                            <th>Precio</th>
+                                            <th>Cantidad</th>
+                                            <th>Total</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        
+                                            <tr>
+                                            <td><b>Logistica de producto</b></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><b>Orden de compra</b></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><b>Envío de medicamento</b></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><b>Número de guía</b></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><b>Pagado</b></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td><b>Por pagar</b></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                    </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
 
                             </div>
                         </div>
+                         
                         <br>
                         <br>
+                       <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary">Subir archivo</button>
+                        </div>
                         <span class="spacer"></span>
+                        
                     </form>
                 </div>
 
@@ -55,6 +182,7 @@
                         <i class="cil-file" style="color: black;"></i>
                         <label for="">Documentación</label>
                         <input type="text" class="form-control" placeholder="Documentación">
+                        
                     </div>
                 </div>
 
@@ -122,10 +250,10 @@
                 <div class="card text-white bg-yellow">
                     <div class="card-body pb-0 ">
                         <button type="button" class="btn btn-transparent p-0 float-right">
-                                        <i class="fas fa-road"></i>
+                                        <i class="fas fa-spinner"></i>
                                     </button>
                         <div class="text-value">STATUS</div>
-                        <div>En transitó</div>
+                        <div>En proceso</div>
                     </div>
                     <div class="chart-wrapper mt-2 mx-2" style="height:60px;">
                         <canvas baseChart class="chart" lineChart2Legend></canvas>
@@ -145,7 +273,7 @@
                             </button>
                         </div>
                         <div class="text-value">STATUS</div>
-                        <div>Entregado</div>
+                        <div>Finalizado</div>
                     </div>
                     <div align-center>
                         <div class="chart-wrapper mt-2 mx-2" style="height:60px;">
