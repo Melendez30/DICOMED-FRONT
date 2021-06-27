@@ -49,6 +49,12 @@ export class ProductosComponent implements OnInit {
           editable:false
         },
 
+        lote: {
+          title: 'Lote',
+          editable:false
+        },
+
+
         clave_imss: {
           title: 'Clave IMSS',
           editable:false
@@ -59,7 +65,11 @@ export class ProductosComponent implements OnInit {
       },
       actions:{
         custom:[
-         
+       
+         {
+              name:'Eliminar', title:'  Eliminar '
+              
+            }
         ],
         columnTitle:'',
         add:false,
@@ -132,6 +142,8 @@ hi(){
 
 }
 
+
+
   constructor(
     private router: Router, 
     private inventarioService: InventarioService
@@ -141,6 +153,19 @@ hi(){
           this.buscarproducto();     
           this.consultartablageneral();
   }
+
+acciones(event){
+  switch(event.action){
+    case "Editar":
+      this.abrirdetalles(event)
+      break;
+    case "Eliminar":
+      this.eliminarproducto(event)
+      break;
+    default: 
+      break;
+  }
+}
 
 abrirdetalles(event){
   console.log(event);
@@ -169,21 +194,22 @@ consultartablageneral(){
 
 
 ////////
-  eliminarproducto(){
+  eliminarproducto(event){
     let json={
-      id:this.productosDetalle.get('id_producto').value
+    id:event.data.id_creacion
     }
-        this.inventarioService.eliminarproducto(json).subscribe({
-      next:(rest: any) => {
-        console.log(rest)
+   this.inventarioService.eliminarproducto(json).subscribe({
+       next:(rest: any) => {
+         console.log(rest)
       },
-      error:(err)=>{
+       error:(err)=>{
         console.log(err);
-      },
+       },
       complete:()=>{
-        this.buscarproducto();
-      }
-    }) 
+         this.buscarproducto();
+       }
+     }) 
+    console.log(event.data);
 
   }
 
@@ -207,7 +233,7 @@ buscarproducto(){
 
 ////////
   agregarproducto(){
-    this.inventarioService.registrarproducto(this.productos.value).subscribe({
+    this.inventarioService.registrarproducto().subscribe({
       next:(rest: any) => {
 
       },

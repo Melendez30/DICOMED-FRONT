@@ -76,18 +76,17 @@
         </div>
     </div>
 
+    <div align="center">
+        <div class="form-group col-sm-10">
+            <label for="exampleFormControlSelect1">Articulo</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+          <option *ngFor="let articulo of articulos" [value]="articulo.id_articulo">{{ articulo.clave_imss }} - {{ articulo.descripcion }}</option>
+        </select>
+        </div>
+    </div>
     <div class="container">
         <form [formGroup]="productosDetalle">
             <div class="row">
-
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <i class="cil-barcode" style="color: black;"></i>
-                        <label for="">Código de barras</label>
-                        <a class="btn btn-light cil-center-focus float-right mr-2" (click)="codigobarras()"></a>
-                        <input type="text" class="form-control" [formControl]="this.productosDetalle.get('codigo_barras')" placeholder="Código de barras">
-                    </div>
-                </div>
 
                 <div class="col-sm-4">
                     <div class="form-group">
@@ -99,12 +98,21 @@
 
                 <div class="col-sm-4">
                     <div class="form-group">
+                        <i class="cil-barcode" style="color: black;"></i>
+                        <label for="">Código de barras</label>
+                        <!-- <a class="btn btn-light cil-center-focus float-right mr-2" (click)="codigobarras()"></a> -->
+                        <input type="text" class="form-control" [formControl]="this.productosDetalle.get('codigo_barras')" placeholder="Código de barras">
+                    </div>
+                </div>
+
+                <!-- <div class="col-sm-4">
+                    <div class="form-group">
                         <i class="cil-info" style="color: black;"></i>
                         <label for="">Presentación activa</label>
                         <input type="text" class="form-control" [formControl]="this.productosDetalle.get('descripcion')" placeholder="Agregue su presentación activa">
                     </div>
 
-                </div>
+                </div> -->
 
 
                 <div class="col-sm-4">
@@ -118,21 +126,17 @@
                 <div class="col-sm-4">
                     <div class="form-group">
                         <i class="cil-info" style="color: black;"></i>
-                        <label class="panel-title" for="">Clave IMSS</label>
-                        <input type="text" class="form-control" [formControl]="this.productosDetalle.get('clave_imss')" placeholder="Ingrese la clave IMSS">
+                        <label class="panel-title" for="">Lote</label>
+                        <input type="text" class="form-control" [formControl]="this.productosDetalle.get('lote')" placeholder="Ingrese lote">
                     </div>
                 </div>
-
-
-                <!-- <div class="col-sm-4">
+                <div class="col-sm-4">
                     <div class="form-group">
                         <i class="cil-ban" style="color: black;"></i>
                         <label class="panel-title" for="">Caducidad</label>
                         <input type="date" class="form-control" [formControl]="this.productosDetalle.get('caducidad')" placeholder="Ingrese la clave IMSS">
                     </div>
-                </div> -->
-
-
+                </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                         <i class="cil-cursor" style="color: black;"></i>
@@ -141,13 +145,14 @@
                     </div>
                 </div>
 
-                <!-- <div class="col-sm-6">
-                    <div class="form-group">
-                        <i class="cil-factory" style="color: black;"></i>
-                        <label for="">Lote</label>
-                        <input type="text" class="form-control" [formControl]="this.productosDetalle.get('lote')" placeholder="Agregue el lote">
-                    </div>
-                </div> -->
+                <!-- 
+
+               
+
+
+                
+
+
 
 
                 <div class="col-sm-12 ">
@@ -160,27 +165,25 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <br>
-            <h1 align="center"><b>Productos creados</b></h1>
+                <br>
+                <h1 align="center"><b>Productos creados</b></h1>
 
-            <br>
-            <span class="spacer"></span>
-        </form>
+                <br>
+                <span class="spacer"></span>
 
 
-        <!-- SE AGREGAN LAS SIGUIENTES TRES LÍNEAS -->
-        <div class="container-fluid py-12">
-            <div class="row">
-                <div class="col-lg-12 mx-auto bg-white rounded shadow">
-                    <div class="card-content table-responsive" id="body-second">
-                        <div *ngIf="!bandera">
-                            <ng2-smart-table class="table table-hover table-striped table-borderless" (custom)="acciones($event)" [source]="todosp" [settings]="settings"></ng2-smart-table>
+
+                <!-- SE AGREGAN LAS SIGUIENTES TRES LÍNEAS -->
+                <div class="container-fluid py-12">
+                    <div class="row">
+                        <div class="col-lg-12 mx-auto bg-white rounded shadow">
+                            <div class="card-content table-responsive" id="body-second">
+                                <div *ngIf="!bandera">
+                                    <ng2-smart-table class="table table-hover table-striped table-borderless" (custom)="acciones($event)" [source]="todosp" [settings]="settings"></ng2-smart-table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-</body>
+            <ng2-smart-table class="table table-hover table-striped table-borderless" (custom)="acciones($event)" [source]="todosp" [settings]="settings"></ng2-smart-table>

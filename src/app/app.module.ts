@@ -78,8 +78,8 @@ import { RegisterComponent } from './views/register/register.component';
     ...APP_CONTAINERS,
     P404Component,
     P500Component,
-    LoginComponent,
-    RegisterComponent
+    // LoginComponent,
+    // RegisterComponent
     
     
   ],

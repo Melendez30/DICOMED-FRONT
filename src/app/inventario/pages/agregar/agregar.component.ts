@@ -120,9 +120,9 @@ export class AgregarComponent implements OnInit {
 
   bandera:boolean=true;
 
-hi(){
 
-}
+  articulos=[]
+
 
   constructor(
     private router: Router, 
@@ -130,146 +130,20 @@ hi(){
     ) { }
 
   ngOnInit(): void {
-          this.buscarproducto();     
-
+    this.consultararticulos();
   }
 
-abrirdetalles(event){
-  this.nombre = event.data.nombre;
-  this.temporal = event.data;
-  this.productosDetalle.patchValue(event.data);
-  this.banderaeditar = false;
-}
-
-cancelaredicion(){
-  this.productosDetalle.reset();
-  this.banderaeditar=true;
-}
-
-acciones(event){
-  switch(event.action){
-    case "Editar":
-      this.abrirdetalles(event)
-      break;
-    case "Eliminar":
-      this.eliminarproducto(event)
-      break;
-    default: 
-      break;
-  }
-}
-
-
-////////
-  eliminarproducto(event){
-    let json={
-      id: event.data.id_creacion
-    }
-        this.inventarioService.eliminarproducto(json).subscribe({
-      next:(rest: any) => {
-        console.log(rest)
+  consultararticulos(){
+    this.inventarioService.listaarcticulos().subscribe({
+      next:(articulos: any)=>{
+        this.articulos=articulos;
+        
       },
       error:(err)=>{
         console.log(err);
-      },
-      complete:()=>{
-        this.buscarproducto();
       }
-    }) 
-
-  }
-
-////////
-buscarproducto(){
-  this.bandera=true;
-    this.inventarioService.buscarproducto().subscribe({
-      next:(rest: any) => {
-        this.todosp=rest
-      },
-      error:(err)=>{
-        console.log(err);
-      },
-      complete:()=>{
-        this.bandera=false
-        console.log(this.todosp);
-      }
-    })  
-    }
-
-
-////////
-  agregarproducto(){
-
-    this.inventarioService.registrarproducto(this.productosDetalle.value).subscribe({
-      next:(rest: any) => {
-          console.log(rest);
-      },
-      error:(err)=>{
-        console.log(err);
-      },
-      complete:()=>{
-      this.buscarproducto();     
-      this.productosDetalle.reset();
-  }
     })
   }
 
-  tomarproducto(producto){
-    console.log(producto);
-      this.productos.patchValue(producto);
-  }
 
-////////
-  editarproducto(){
-    this.inventarioService.editarproducto(this.productosDetalle.value).subscribe({
-      next:(rest: any) => {
-        console.log(rest)
-      },
-      error:(err)=>{
-        console.log(err);
-      },
-      complete:()=>{
-        this.buscarproducto()
-       this.cancelaredicion()
-  }
-    })
-      
-  }
-////////
-codigobarras(){
-  let json={
-    codigo: this.productosDetalle.get("codigo_barras").value
-  }
-      this.inventarioService.buscarcodigobarras(json).subscribe({
-    next:(rest: any) => {
-      console.log(rest)
-      this.productosDetalle.get("nombre").patchValue(rest[0].nombre);
-      this.productosDetalle.get("clave_imss").patchValue(rest[0].clave_imss);
-      this.productosDetalle.get("descripcion").patchValue(rest[0].descripcion);
-
-    },
-    error:(err)=>{
-      console.log(err);
-    },
-    complete:()=>{
-      
-    }
-  }) 
-
-}
-//  guardarproducto(){
-
-  //}
-
-
-///////
-  salir(){
-   
-    
-    //ir al backend
-    //usuario
-    
-this.router.navigate(['./auth'])
-
-}
 }
