@@ -67,9 +67,22 @@ export class LogisticaComponent implements OnInit {
   salida = {
     nombre: '',
     descripcion: ''
+  };
+  proceso;
+  respuesta = {
+    codigo: '',
+    detalle: '',
+    mensaje: ''
   }
+  documentosPosibles = [];
   @ViewChild('myModal2') public myModal2: ModalDirective;
-   
+  @ViewChild('r') public r: ModalDirective;
+
+  statusForm = new FormGroup({
+    id_salida_status: new FormControl(0),
+    id_salida: new FormControl(0),
+    status: new FormControl('EN CAMINO', [Validators.required])
+  });
 
   constructor(
     private router: Router, 
@@ -78,11 +91,99 @@ export class LogisticaComponent implements OnInit {
 
   ngOnInit(): void {
     this.listaSalidas();
+    this.consultardocumentosPosibles();
   }
 
+  consultardocumentosPosibles(){
+    this.inventarioService.consultarDocumentosPosibles().subscribe({
+      next:(res: any) => {
+        this.documentosPosibles = res;
+      },
+      error:(err) => {
+        console.log(err);
+      },
+      complete:() => {
+
+      }
+    });
+  }
+
+  cambiarStatus(){
+    // let json = {
+    //   id_salida_status: this.statusForm.get('id_salida_status').value,
+    //   status: this.statusForm.get('status').value
+    // }
+    this.inventarioService.cambiarStatus(this.statusForm.value).subscribe({
+      next:(res: any) => {
+        this.respuesta = res;
+      },
+      error:(err) => {
+        console.log(err);
+      },
+      complete:() => {
+        if(this.respuesta.codigo == 'OK'){
+          this.verStatus(this.statusForm.get('id_salida').value);
+        }
+        this.r.show();
+      }
+    });
+  }
+
+  cleanClass(){
+    $('#status-tab').removeClass('isDisabled');    
+    $('#documentos-tab').removeClass('isDisabled');    
+  }
+
+  consultarStatus(id_salida){
+    let json = {
+      id_salida: id_salida
+    };
+    this.inventarioService.consultarStatus(json).subscribe({
+      next:(res: any) => {
+        this.statusForm.patchValue(res);
+      },
+      error:(err) => {
+        console.log(err);
+      },
+      complete:() => {
+        
+      }
+    });
+  }
+  
+  verStatus(id_salida){
+    let json = {
+      id_salida: id_salida
+    }
+    this.inventarioService.consultarStatusSalida(json).subscribe({
+      next:(resp: any) => {
+        this.proceso = resp;
+      },
+      error:(err) => {
+        console.log(err);
+      },
+      complete:() => {
+        this.cleanClass();
+        if(this.proceso.id_cat_logistica == 1){
+          $('#status-tab').tab('show');
+          $('#documentos-tab').addClass('isDisabled');
+        }
+        if(this.proceso.id_cat_logistica == 2){
+          $('#documentos-tab').tab('show');
+          $('#status-tab').addClass('isDisabled');
+        }
+        if(this.proceso.id_cat_logistica == null || undefined){
+
+        }
+        this.myModal2.show();
+      }
+    })
+  }
+  
   verSalida(event){
     this.salida = event.data;
-    this.myModal2.show();
+    this.verStatus(event.data.id_salida);
+    this.consultarStatus(event.data.id_salida);
   }
 
   listaSalidas(){

@@ -38,49 +38,6 @@
 <br>
 
 <body>
-
-    <!-- <div class="container">
-        <form [formGroup]="productosDetalle">
-            <div class="row">
-
-
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <i class="cil-user" style="color: black;"></i>
-                        <label for="">Quién recibe</label>
-                        <input type="text" class="form-control" placeholder="Añada el nombre de quién recibe">
-                    </div>
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <i class="cil-file" style="color: black;"></i>
-                        <label for="">Documentación</label>
-                        <input type="text" class="form-control" placeholder="Documentación">
-                        
-                    </div>
-                </div>
-
-
-
-                <div class="col-sm-12 ">
-                    <div class="form-group">
-                        <a *ngIf="banderaeditar" class="btn btn-success fas fa-folder float-right a2" (click)="agregarproducto()" type=button>
-                        </a>
-
-                        <div *ngIf="!banderaeditar" class="btn-group float-right a2" role="group" aria-label="Basic example">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-
-            <br>
-            <span class="spacer"></span>
-        </form>
-    </div> -->
-
     <div class="container-fluid">
         <h1 align="center"><b>Logistica de productos</b></h1>
 
@@ -101,65 +58,71 @@
               </button>
             </div>
             <div class="modal-body">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                      <li class="breadcrumb-item">Status</li>
-                      <li class="breadcrumb-item">Documentos</li>
-                    </ol>
-                  </nav>
+                <div class="row">
+                    <div class="col-3">
+                      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="status-tab" data-toggle="pill" href="#status" role="tab" aria-controls="status" aria-selected="true">1 - Status</a>
+                        <a class="nav-link" id="documentos-tab" data-toggle="pill" href="#documentos" role="tab" aria-controls="documentos" aria-selected="false">2 - Documentos</a>
+                      </div>
+                    </div>
+                    <div class="col-9">
+                      <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="status" role="tabpanel" aria-labelledby="status">
+                            <div class="row">
+                                <div class="col-12" [formGroup]="statusForm">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Status Actual</label>
+                                        <select [formControl]="statusForm.get('status')" class="form-control" id="exampleFormControlSelect1">
+                                          <option value="EN CAMINO">EN CAMINO</option>
+                                          <option value="ENTREGADO">ENTREGADO</option>
+                                        </select>
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button class="btn btn-primary float-right" (click)="cambiarStatus()">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="documentos" role="tabpanel" aria-labelledby="documentos">
+                            <ul class="list-group">
+                                <li class="list-group-item" *ngFor="let doc of documentosPosibles">
+                                    <!-- <i class="fas fa-check text-success"></i> -->
+                                    <i class="fas fa-times text-danger"></i>
+                                    {{ doc.nombre }}
+                                </li>
+                              </ul>
+                        </div>
+                      </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="myModal2.hide()">Cerrar</button>
+                <button type="button" class="btn btn-secondary" (click)="myModal2.hide(); cleanClass();">Cerrar</button>
             </div>
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
 
+      <div bsModal #r="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">¡Atención!</h4>
+              <button type="button" class="close" (click)="r.hide()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                {{ respuesta.mensaje }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="r.hide()">Cerrar</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+
 </body>
-
-
-<!-- <div class="container"> -->
-<!-- 
-    <div class="animated fadeIn ">
-        <div class="row">
-
-            <div class="col-sm-6 col-lg-4">
-                <br>
-                <div class="card text-white bg-yellow">
-                    <div class="card-body pb-0 ">
-                        <button type="button" class="btn btn-transparent p-0 float-right">
-                                        <i class="fas fa-spinner"></i>
-                                    </button>
-                        <div class="text-value">STATUS</div>
-                        <div>En proceso</div>
-                    </div>
-                    <div class="chart-wrapper mt-2 mx-2" style="height:60px;">
-                        <canvas baseChart class="chart" lineChart2Legend></canvas>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-sm-6 col-lg-4">
-                <br>
-                <div class="card text-white bg-success">
-                    <div class="card-body pb-0">
-                        <div class="btn-group float-right">
-                            <button type="button" class="btn btn-transparent p-0 float-right">
-                              <i class="fas fa-check-circle"></i>
-                            </button>
-                        </div>
-                        <div class="text-value">STATUS</div>
-                        <div>Finalizado</div>
-                    </div>
-                    <div align-center>
-                        <div class="chart-wrapper mt-2 mx-2" style="height:60px;">
-                            <canvas baseChart class="chart" lineChart2Legend></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-
-        <!--/.col-->

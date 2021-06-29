@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class InventarioService {
 
   protocolo='http';
-  url = '192.168.0.11:3000'
+  url = '192.168.1.66:3000'
   
 
     constructor(private http:HttpClient) { 
@@ -112,5 +112,21 @@ export class InventarioService {
 
       tablaSalidas(){
         return this.http.post(`${this.protocolo}://${this.url}/productos/salida/lista`, null)
+      }
+
+      consultarStatusSalida(parametro){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/logistica/proceso`, parametro)
+      }
+
+      consultarStatus(parametro){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/logistica/status`, parametro)
+      }
+
+      cambiarStatus(parametro){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/logistica/status/actualizar`, parametro)
+      }
+
+      consultarDocumentosPosibles(){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/logistica/documentos`, null)
       }
 }

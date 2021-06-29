@@ -1,5 +1,6 @@
-.breadcrumb > li + li:before {
-    color: #ccc;
-    content: "->";
-    padding: 0 5px;
+.isDisabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+    pointer-events: none;
 }
