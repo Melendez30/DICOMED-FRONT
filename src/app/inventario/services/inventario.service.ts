@@ -80,12 +80,29 @@ export class InventarioService {
 
 
 
-
+/************************************************************************************************************************/
 
       listaarcticulos(){
         return this.http.post(`${this.protocolo}://${this.url}/articulos`, null);
       }
 
+      altaproducto(parametros){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/alta`, parametros);
+      }
 
+      consultaproductos(){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/listado`, null)
+      }
 
+      darEntrada(parametros){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/entrada/alta`, parametros);
+      }
+
+      consultarTablaGeneral(){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/general`, null);
+      }
+
+      darSalida(parametros){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/salida/alta`, parametros)
+      }
 }

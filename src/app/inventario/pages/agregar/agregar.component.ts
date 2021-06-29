@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import {ModalDirective} from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { InventarioService } from '../../services/inventario.service';
@@ -52,13 +53,13 @@ export class AgregarComponent implements OnInit {
       },
       actions:{
         custom:[
-          {
-            name:'Editar', title:'Editar'
-          },
+          // {
+          //   name:'Editar', title:'Editar'
+          // },
 
-          {
-            name:'Eliminar', title:'  Eliminar '
-          }
+          // {
+          //   name:'Eliminar', title:'  Eliminar '
+          // }
         ],
         columnTitle:'',
         add:false,
@@ -72,58 +73,24 @@ export class AgregarComponent implements OnInit {
 
     };
 
-
-    // IMPORTANTE
-    // Siempre que agregres nuevos campos al HTML, no olvidar agregarlos al formulario en el typescript, no no funciona!!
-    // Entonces PRODUCTOS (FORMGROUP) TIENE QUE SER IGUAL A PRODUCTO DETALLES! 
-    // OJO! SI EL BACKEND NO DEVUELVE LOS CAMPOS NECESARIOS O INCOMPLETOS EL FORMGROUP VA A MARCAR ERROR
-
-    productos = new FormGroup({ 
-      id_producto: new FormControl(0),
-      piezas_almacen:  new FormControl('', [Validators.required]), 
-      nombre:  new FormControl('', [Validators.required]),
-      descripcion: new FormControl('', [Validators.required]),
+    crearProductoForm = new FormGroup({
+      id_articulo: new FormControl(0),
+      nombre: new FormControl('', [Validators.required]),
+      codigo_barras: new FormControl('', [Validators.required]),
       laboratorio: new FormControl('', [Validators.required]),
       lote: new FormControl('', [Validators.required]),
       caducidad: new FormControl('', [Validators.required]),
-      clave_imss: new FormControl('', [Validators.required]),
-      fecha_entrada: new FormControl ('', [Validators.required]),
-      piezas_entrada: new FormControl ('', [Validators.required]),
-      piezas_salida: new FormControl ('', [Validators.required]),
-      proveedor: new FormControl ('', [Validators.required]),
-      fecha_salida: new FormControl ('', [Validators.required]),
-      numero_guia: new FormControl(''),
-      codigo_barras: new FormControl(''),
-      status: new FormControl(''),
-      
-  });
+      ubicacion: new FormControl('', [Validators.required])
+    });
 
-      productosDetalle = new FormGroup({ 
-       id_creacion: new FormControl(0),
-      nombre:  new FormControl('', []),
-      descripcion: new FormControl('', ),
-      laboratorio: new FormControl('', []),
-      lote: new FormControl('', []),
-      caducidad: new FormControl('', []),
-      clave_imss: new FormControl('', []),
-      codigo_barras: new FormControl(''),
-      ubicacion: new FormControl(''),
-      
-  });
-
-    busqueda = new FormGroup({ 
-      busqueda:  new FormControl('', [Validators.required]), 
- });
-
-  todosp=[];
-  banderaeditar:boolean=true;
-
-  bandera:boolean=true;
-
-
-  articulos=[]
-
-
+    @ViewChild('myModal') public myModal: ModalDirective;
+    articulos = [];
+    productos = [];
+    respuesta = {
+      codigo: '',
+      detalle: '',
+      mensaje: ''
+    }
   constructor(
     private router: Router, 
     private inventarioService: InventarioService
@@ -131,19 +98,59 @@ export class AgregarComponent implements OnInit {
 
   ngOnInit(): void {
     this.consultararticulos();
+    this.consultarProductos();
+  }
+
+  consultarProductos(){
+    this.inventarioService.consultaproductos().subscribe({
+      next: (productos: any) => {
+        this.productos = productos;
+        console.log(this.productos);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {
+
+      }
+    });
+  }
+
+  tomarDatos(){
+    if(this.crearProductoForm.invalid){
+      this.respuesta.mensaje = 'ALGUNO DE LOS DATOS INGRESADOS SON INVÁLIDOS O ESTAN VACIOS';
+      this.myModal.show();
+    }else{
+      this.altaProductos();
+    }
+  }
+
+  altaProductos(){
+    this.inventarioService.altaproducto(this.crearProductoForm.value).subscribe({
+      next: (res: any) => {
+        this.respuesta = res;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {
+        if(this.respuesta.codigo == 'OK'){
+          this.consultarProductos();
+        }
+        this.myModal.show();
+      }
+    });
   }
 
   consultararticulos(){
     this.inventarioService.listaarcticulos().subscribe({
       next:(articulos: any)=>{
         this.articulos=articulos;
-        
       },
       error:(err)=>{
         console.log(err);
       }
     })
   }
-
 
 }

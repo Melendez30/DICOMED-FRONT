@@ -16,6 +16,8 @@ import { SalidasComponent } from './pages/salidas/salidas.component';
 import { EntradasComponent } from './pages/entradas/entradas.component';
 import { LogisticaComponent } from './pages/logistica/logistica.component';
 
+// Modal Component
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -29,13 +31,13 @@ import { LogisticaComponent } from './pages/logistica/logistica.component';
     SalidasComponent,
     EntradasComponent,
     LogisticaComponent
-    
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     InventarioRoutingModule,
-    Ng2SmartTableModule
+    Ng2SmartTableModule,
+    ModalModule.forRoot()
   ]
 })
 export class InventarioModule { }
