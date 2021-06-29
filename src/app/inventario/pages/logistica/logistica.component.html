@@ -7,11 +7,6 @@
                 </div>
                 <div class="card-body">
                     <nav class="navbar navbar-expand-lg navbar-light bg-info">
-                        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-                        <!-- <button aria-controls="navbarSupportedContent" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" class="navbar-toggler" type="button" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button> -->
-
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item active">
@@ -20,23 +15,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Registrarse</a>
                                 </li>
-                                <!-- <li class="nav-item dropdown" dropdown>
-                                    <a id="link-dropdown" class="nav-link dropdown-toggle" href dropdownToggle (click)="false" aria-controls="your-dropdown">
-                                    Dropdown
-                                    </a>
-                                    <div id="your-dropdown" class="dropdown-menu" aria-labelledby="link-dropdown" *dropdownMenu>
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                </li> -->
-
                             </ul>
-                            <!-- <form class="form-inline my-2 my-lg-0">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-                                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button>
-                            </form> -->
                         </div>
                     </nav>
                 </div>
@@ -59,112 +38,8 @@
 <br>
 
 <body>
-    <div class="modal fade" id="d" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <!-- <h2 class="modal-title">Seguimiento administrativo</h2> -->
-                    <h3> 
-                    <b>
-                        <img src="assets/step.jpg" align="right"  width="140" height="55" style="border:10;" > Seguimiento administrativo
-                    </b>
-                    </h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                    <!-- <p>{{ temporal | json }}</p> -->
-                    <h5>Documentación.</h5>
-                    <br>
-                    <form>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                
-                                <div clas="table-responsive">
-                                    <table class="table table-bordered" >
-                                        <thead>
-                                        <tr>
-                                            <th>Documento</th>
-                                            <th>PDF</th>
-                                            <th>Precio</th>
-                                            <th>Cantidad</th>
-                                            <th>Total</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        
-                                            <tr>
-                                            <td><b>Logistica de producto</b></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
 
-                                        <tr>
-                                            <td><b>Orden de compra</b></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td><b>Envío de medicamento</b></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td><b>Número de guía</b></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td><b>Pagado</b></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        
-                                        <tr>
-                                            <td><b>Por pagar</b></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                    </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div>
-                        </div>
-                         
-                        <br>
-                        <br>
-                       <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary">Subir archivo</button>
-                        </div>
-                        <span class="spacer"></span>
-                        
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
+    <!-- <div class="container">
         <form [formGroup]="productosDetalle">
             <div class="row">
 
@@ -196,52 +71,55 @@
                         <div *ngIf="!banderaeditar" class="btn-group float-right a2" role="group" aria-label="Basic example">
 
                         </div>
-
-                        <!-- <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                              En transito
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                            <label class="form-check-label" for="exampleRadios2">
-                              Entregado
-                            </label>
-                        </div> -->
-
                     </div>
                 </div>
             </div>
             <br>
-            <h1 align="center"><b>Logistica de productos</b></h1>
 
             <br>
             <span class="spacer"></span>
         </form>
+    </div> -->
+
+    <div class="container-fluid">
+        <h1 align="center"><b>Logistica de productos</b></h1>
 
 
-        <!-- SE AGREGAN LAS SIGUIENTES TRES LÍNEAS -->
-        <div class="container-fluid py-12">
-            <div class="row">
-                <div class="col-lg-12 mx-auto bg-white rounded shadow">
-                    <div class="card-content table-responsive" id="body-second">
-                        <div *ngIf="!bandera">
-                            <ng2-smart-table class="table table-hover table-striped table-borderless" (custom)="abrirdetalles($event)" [source]="todosp" [settings]="settings"></ng2-smart-table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <ng2-smart-table (userRowSelect)="verSalida($event)" class="table table-hover table-striped table-borderless" [source]="salidas" [settings]="settings2"></ng2-smart-table>    
     </div>
+
+    <div bsModal #myModal2="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">
+                  Nombre: {{ salida.nombre }}<br>
+                  Descripción: {{ salida.descripcion }}
+              </h4>
+              <button type="button" class="close" (click)="myModal2.hide()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item">Status</li>
+                      <li class="breadcrumb-item">Documentos</li>
+                    </ol>
+                  </nav>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="myModal2.hide()">Cerrar</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
 
 </body>
 
 
-<!-- ////////// -->
-<div class="container">
-
+<!-- <div class="container"> -->
+<!-- 
     <div class="animated fadeIn ">
         <div class="row">
 
@@ -261,7 +139,6 @@
                 </div>
             </div>
 
-            <!--/.col-->
 
             <div class="col-sm-6 col-lg-4">
                 <br>
@@ -282,7 +159,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
         <!--/.col-->

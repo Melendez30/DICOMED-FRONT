@@ -62,9 +62,74 @@ export class EntradasComponent implements OnInit {
     }, noDataMessage:"Sin datos disponibles"
 
   };
+
+  settings2 = {
+    columns: {
+      codigo_barras: {
+        title: 'Código de barras',
+        editable:false
+      },
+
+      nombre: {
+        title: 'Nombre',
+        editable:false
+      },
+
+      descripcion: {
+        title: 'Descripción',
+        editable:false
+      },
+      
+      laboratorio: {
+        title: 'Laboratorio',
+        editable:false
+      },
+
+      clave_imss: {
+        title: 'Clave IMSS',
+        editable:false
+      },
+      proveedor:{
+        title: 'Proveedor',
+        editable:false
+      },
+      lote:{
+        title: 'Lote',
+        editable:false
+      },
+      caducidad:{
+        title: 'Caducidad',
+        editable:false
+      },
+      fecha_entrada:{
+        title: 'Fecha de Entrada',
+        editable:false
+      },
+      piezas_entrada: {
+        title: 'Piezas de Entrada',
+        editable:false
+      },
+    },
+    actions:{
+      custom:[
+      ],
+      columnTitle:'',
+      add:false,
+      edit:false,
+      delete:false, position: "right"
+    },
+    pager:{
+      perPage:5
+      
+    }, noDataMessage:"Sin datos disponibles"
+
+  };
+
+
   @ViewChild('myModal') public myModal: ModalDirective;
   @ViewChild('myModal2') public myModal2: ModalDirective;
   productos = [];
+  entradas = [];
   producto = {
     nombre: '',
     descripcion: '',
@@ -88,6 +153,21 @@ export class EntradasComponent implements OnInit {
 
   ngOnInit(): void {
     this.consultarProductos();
+    this.listaEntradas();
+  }
+
+  listaEntradas(){
+    this.inventarioService.tablaEntradas().subscribe({
+      next:(resp: any) => {
+        this.entradas = resp;
+      },
+      error:(err) => {
+        console.log(err);
+      },
+      complete:() => {
+
+      }
+    });
   }
 
   tomarProductos(){

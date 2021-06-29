@@ -105,4 +105,12 @@ export class InventarioService {
       darSalida(parametros){
         return this.http.post(`${this.protocolo}://${this.url}/productos/salida/alta`, parametros)
       }
+
+      tablaEntradas(){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/entrada/lista`, null)
+      }
+
+      tablaSalidas(){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/salida/lista`, null)
+      }
 }

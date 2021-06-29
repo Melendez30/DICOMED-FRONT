@@ -15,6 +15,73 @@ declare var $:any;
   ]
 })
 export class SalidasComponent implements OnInit {
+  
+  settings2 = {
+    columns: {
+      codigo_barras: {
+        title: 'Codigo Barras',
+        editable:false
+      },
+      nombre: {
+        title: 'Nombre',
+        editable:false
+      },
+      descripcion: {
+        title: 'Descripción',
+        editable:false
+      },
+      laboratorio: {
+        title: 'Laboratorio',
+        editable:false
+      },
+      clave_imss: {
+        title: 'Clave IMSS',
+        editable:false
+      },
+      cliente: {
+        title: 'Cliente',
+        editable:false
+      },
+      lote: {
+        title: 'Lote',
+        editable:false
+      },
+      caducidad: {
+        title: 'Caducidad',
+        editable:false
+      },
+      fecha_salida: {
+        title: 'Fecha Salida',
+        editable:false
+      },
+      piezas_salida: {
+        title: 'Piezas Salida',
+        editable:false
+      },
+      num_guia: {
+        title: 'Numero de Guia',
+        editable:false
+      },
+      orden_compra: {
+        title: 'Orden de Compra',
+        editable:false
+      },
+    },
+    actions:{
+      custom:[
+      ],
+      columnTitle:'',
+      add:false,
+      edit:false,
+      delete:false, position: "right"
+    },
+    pager:{
+      perPage:5
+      
+    }, noDataMessage:"Sin datos disponibles"
+
+  };
+
 
   settings = {
     columns: {
@@ -84,6 +151,7 @@ export class SalidasComponent implements OnInit {
   });
   entradas = [];
   entrada;
+  salidas = [];
 
   constructor(
     private router: Router, 
@@ -92,6 +160,21 @@ export class SalidasComponent implements OnInit {
 
   ngOnInit(): void {
     this.consultarProductos();
+    this.listaSalidas();
+  }
+
+  listaSalidas(){
+    this.inventarioService.tablaSalidas().subscribe({
+      next:(resp: any) => {
+        this.salidas = resp;
+      },
+      error:(err) => {
+        console.log(err);
+      },
+      complete:() => {
+
+      }
+    });
   }
 
   abrirProducto(event){
