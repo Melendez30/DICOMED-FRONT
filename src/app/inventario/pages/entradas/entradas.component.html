@@ -58,12 +58,12 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
-                <div class="modal-body">
-                    <!-- <p>{{ temporal | json }}</p> -->
-                    <form [formGroup]="productosDetalle">
-                        <div class="row">
+                <!-- <div class="modal-body"> -->
+                <!-- <p>{{ temporal | json }}</p> -->
+                <form [formGroup]="productosDetalle">
+                    <div class="row">
 
-                            <div class="col-sm-4">
+                        <!-- <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="">Código de barras</label>
                                     <a class="btn btn-light cil-center-focus float-right mr-2" (click)="codigobarras()"></a>
@@ -83,9 +83,9 @@
                                     <label for="">Presentación activa</label>
                                     <input type="text" class="form-control" [formControl]="this.productosDetalle.get('descripcion')" placeholder="Agregue su presentación activa">
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <div class="col-sm-4">
+                        <!-- <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="">Laboratorio</label>
                                     <input type="text" class="form-control" [formControl]="this.productosDetalle.get('laboratorio')" placeholder="Agregue nombre de laboratorio">
@@ -96,73 +96,73 @@
                                 <div class="form-group">
                                     <label class="panel-title" for="">Clave IMSS</label>
                                     <input type="text" class="form-control" [formControl]="this.productosDetalle.get('clave_imss')" placeholder="Ingrese la clave IMSS">
-                                </div>
+                                </div> -->
 
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label for="">Proveedor</label>
-                                        <input type="text" class="form-control" [formControl]="this.productosDetalle.get('proveedor')" placeholder="Ingrese el nombre del proveedor">
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label for="">Folio</label>
-                                        <input type="text" class="form-control" [formControl]="this.productosDetalle.get('folio_prov')" placeholder="Ingrese el folio del proveedor">
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label for="">Lote</label>
-                                        <input type="text" class="form-control" [formControl]="this.productosDetalle.get('lote')" placeholder="Agregue lote">
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label for="">Caducidad</label>
-                                        <input type="date" class="form-control" [formControl]="this.productosDetalle.get('caducidad')" placeholder="Agregue caducidad">
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label for="">Fecha de entrada</label>
-                                        <input type="date" class="form-control" [formControl]="this.productosDetalle.get('fecha_entrada')" placeholder="Fecha de entrada">
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label for="">Piezas de entrada</label>
-                                        <input type="text" class="form-control" [formControl]="this.productosDetalle.get('piezas_entrada')" placeholder="Ingrese el número de piezas de entrada">
-                                    </div>
-                                </div>
+                        <!-- <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="">Proveedor</label>
+                                <input type="text" class="form-control" [formControl]="this.productosDetalle.get('proveedor')" placeholder="Ingrese el nombre del proveedor">
                             </div>
                         </div>
-                        <br>
 
-                        <br>
-                        <span class="spacer"></span>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <!-- <button type="button" (click)="eliminarproducto()" class="btn btn-danger">Eliminar</button> -->
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" (click)="editarproducto()" class="btn btn-primary">Guardar cambios</button>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="">Folio</label>
+                                <input type="text" class="form-control" [formControl]="this.productosDetalle.get('folio_prov')" placeholder="Ingrese el folio del proveedor">
+                            </div>
+                        </div> -->
 
-                </div>
+
+                        <!-- <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="">Lote</label>
+                                <input type="text" class="form-control" [formControl]="this.productosDetalle.get('lote')" placeholder="Agregue lote">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="">Caducidad</label>
+                                <input type="date" class="form-control" [formControl]="this.productosDetalle.get('caducidad')" placeholder="Agregue caducidad">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="">Fecha de entrada</label>
+                                <input type="date" class="form-control" [formControl]="this.productosDetalle.get('fecha_entrada')" placeholder="Fecha de entrada">
+                            </div>
+                        </div> -->
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="">Piezas de entrada</label>
+                                <input type="text" class="form-control" [formControl]="this.productosDetalle.get('piezas_entrada')" placeholder="Ingrese el número de piezas de entrada">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                    <br>
+
+                    <br>
+                    <span class="spacer"></span>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" (click)="eliminarproducto()" class="btn btn-danger">Eliminar</button> -->
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <!-- <button type="button" (click)="editarproducto()" class="btn btn-primary">Guardar cambios</button> -->
+
             </div>
         </div>
     </div>
+
     <div class="container">
         <form [formGroup]="productosDetalle">
             <div class="row">
 
 
-                <div class="col-sm-4">
+                <!-- <div class="col-sm-4">
                     <div class="form-group">
                         <i class="cil-barcode" style="color: black;"></i>
                         <label for="">Código de barras</label>
@@ -202,6 +202,14 @@
                         <label class="panel-title" for="">Clave IMSS</label>
                         <input type="text" class="form-control" [formControl]="this.productosDetalle.get('clave_imss')" placeholder="Ingrese la clave IMSS">
                     </div>
+                </div> -->
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <i class="cil-input " style="color: black;"></i>
+                        <label for="">Piezas de entrada</label>
+                        <input type="text" class="form-control" [formControl]="this.productosDetalle.get('piezas_entrada')" placeholder="Ingrese el número de piezas de entrada">
+                    </div>
                 </div>
 
                 <div class="col-sm-4">
@@ -220,7 +228,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4">
+                <!-- <div class="col-sm-4">
                     <div class="form-group">
                         <i class="cil-factory" style="color: black;"></i>
                         <label for="">Lote</label>
@@ -234,23 +242,16 @@
                         <label for="">Caducidad</label>
                         <input type="date" class="form-control" [formControl]="this.productosDetalle.get('caducidad')" placeholder="Agregue caducidad">
                     </div>
-                </div>
+                </div> -->
 
-                <div class="col-sm-4">
+                <!-- <div class="col-sm-4">
                     <div class="form-group">
                         <i class="cil-calendar" style="color: black;"></i>
                         <label for="">Fecha de entrada</label>
                         <input [value]="fecha" type="date" class="form-control" [formControl]="this.productosDetalle.get('fecha_entrada')" placeholder="Fecha de entrada">
                     </div>
-                </div>
+                </div> -->
 
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <i class="cil-input " style="color: black;"></i>
-                        <label for="">Piezas de entrada</label>
-                        <input type="text" class="form-control" [formControl]="this.productosDetalle.get('piezas_entrada')" placeholder="Ingrese el número de piezas de entrada">
-                    </div>
-                </div>
 
                 <!-- 
 
