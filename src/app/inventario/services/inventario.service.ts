@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class InventarioService {
 
   protocolo='http';
-  url = '192.168.1.66:3000'
+  url = 'localhost:3000'
   
 
     constructor(private http:HttpClient) { 
@@ -128,5 +128,13 @@ export class InventarioService {
 
       consultarDocumentosPosibles(){
         return this.http.post(`${this.protocolo}://${this.url}/productos/logistica/documentos`, null)
+      }
+
+      consultarDocumentosSubidos(parametro){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/logistica/documentos/lista`, parametro)
+      }
+
+      subirDocumento(parametros){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/logistica/documentos/subir`, parametros);
       }
 }

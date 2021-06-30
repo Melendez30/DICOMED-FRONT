@@ -75,6 +75,7 @@ export class LogisticaComponent implements OnInit {
     mensaje: ''
   }
   documentosPosibles = [];
+  documentosSubidos = [];
   @ViewChild('myModal2') public myModal2: ModalDirective;
   @ViewChild('r') public r: ModalDirective;
 
@@ -84,6 +85,15 @@ export class LogisticaComponent implements OnInit {
     status: new FormControl('EN CAMINO', [Validators.required])
   });
 
+  uploadForm = new FormGroup({
+    file: new FormControl('', [Validators.required]),
+    id_cat_documento: new FormControl(0),
+    id_salida: new FormControl(0),
+  });
+
+  id_cat_doc = 0;
+  id_salida = 0;
+
   constructor(
     private router: Router, 
     private inventarioService: InventarioService
@@ -91,7 +101,59 @@ export class LogisticaComponent implements OnInit {
 
   ngOnInit(): void {
     this.listaSalidas();
-    this.consultardocumentosPosibles();
+  }
+
+  subirDocumento(){
+    var formdata = new FormData();
+    formdata.append('file', this.uploadForm.get('file').value);
+    formdata.append('id_cat_documento', this.uploadForm.get('id_cat_documento').value);
+    formdata.append('id_salida', this.uploadForm.get('id_salida').value);
+    this.inventarioService.subirDocumento(formdata).subscribe({
+      next:(res: any) => {
+        this.respuesta = res;
+      },
+      error:(err) => {
+        console.log(err);
+      },
+      complete:() => {
+        if(this.respuesta.codigo == 'OK'){
+          this.verStatus(this.uploadForm.get('id_salida').value);
+          this.consultardocumentosSubidos(this.uploadForm.get('id_salida').value);
+          this.cleanClass();
+        }
+        this.r.show();
+      }
+    });
+  }
+
+  onFileSelect(event, id_cat_doc) {
+    this.uploadForm.get('id_cat_documento').patchValue(id_cat_doc);
+    this.uploadForm.get('id_salida').patchValue(this.proceso.id_salida);
+    var name = event.target.files[0].name;
+    if (name.slice(-4) == '.pdf') {
+      if (event.target.files.length > 0) {
+        const file = event.target.files[0];
+        this.uploadForm.get('file').setValue(file);
+      }
+    }
+  }
+
+
+  consultardocumentosSubidos(id_salida){
+    let json = {
+      id_salida: id_salida
+    }
+    this.inventarioService.consultarDocumentosSubidos(json).subscribe({
+      next:(res: any) => {
+        this.documentosSubidos = res;
+      },
+      error:(err) => {
+        console.log(err);
+      },
+      complete:() => {
+
+      }
+    });
   }
 
   consultardocumentosPosibles(){
@@ -131,7 +193,8 @@ export class LogisticaComponent implements OnInit {
 
   cleanClass(){
     $('#status-tab').removeClass('isDisabled');    
-    $('#documentos-tab').removeClass('isDisabled');    
+    $('#documentos-tab').removeClass('isDisabled');
+    $('#cierre-tab').removeClass('isDisabled');    
   }
 
   consultarStatus(id_salida){
@@ -167,9 +230,16 @@ export class LogisticaComponent implements OnInit {
         if(this.proceso.id_cat_logistica == 1){
           $('#status-tab').tab('show');
           $('#documentos-tab').addClass('isDisabled');
+          $('#cierre-tab').addClass('isDisabled');
         }
         if(this.proceso.id_cat_logistica == 2){
           $('#documentos-tab').tab('show');
+          $('#status-tab').addClass('isDisabled');
+          $('#cierre-tab').addClass('isDisabled');
+        }
+        if(this.proceso.id_cat_logistica == 3){
+          $('#cierre-tab').tab('show');
+          $('#documentos-tab').addClass('isDisabled');
           $('#status-tab').addClass('isDisabled');
         }
         if(this.proceso.id_cat_logistica == null || undefined){
@@ -183,7 +253,9 @@ export class LogisticaComponent implements OnInit {
   verSalida(event){
     this.salida = event.data;
     this.verStatus(event.data.id_salida);
+    this.consultardocumentosSubidos(event.data.id_salida);
     this.consultarStatus(event.data.id_salida);
+    this.consultardocumentosPosibles();
   }
 
   listaSalidas(){

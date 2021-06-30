@@ -63,6 +63,7 @@
                       <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="nav-link active" id="status-tab" data-toggle="pill" href="#status" role="tab" aria-controls="status" aria-selected="true">1 - Status</a>
                         <a class="nav-link" id="documentos-tab" data-toggle="pill" href="#documentos" role="tab" aria-controls="documentos" aria-selected="false">2 - Documentos</a>
+                        <a class="nav-link" id="cierre-tab" data-toggle="pill" href="#cierre" role="tab" aria-controls="cierre" aria-selected="false">3 - Cierre</a>
                       </div>
                     </div>
                     <div class="col-9">
@@ -88,11 +89,22 @@
                         <div class="tab-pane fade" id="documentos" role="tabpanel" aria-labelledby="documentos">
                             <ul class="list-group">
                                 <li class="list-group-item" *ngFor="let doc of documentosPosibles">
-                                    <!-- <i class="fas fa-check text-success"></i> -->
-                                    <i class="fas fa-times text-danger"></i>
+                                    <i *ngIf="doc.id_cat_documento == documentosSubidos.length + 1" class="fas fa-check text-success"></i>
+                                    <i *ngIf="doc.id_cat_documento != documentosSubidos.length + 1" class="fas fa-times text-danger"></i>
                                     {{ doc.nombre }}
+                                    <div class="form-group">
+                                      <input type="file" (change)="onFileSelect($event, doc.id_cat_documento)" *ngIf="doc.id_cat_documento == documentosSubidos.length + 1" class="form-control-file" id="exampleFormControlFile1">
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                  <div>
+                                    <button (click)="subirDocumento()" class="btn btn-primary float-right">Subir</button>
+                                  </div>
                                 </li>
                               </ul>
+                        </div>
+                        <div class="tab-pane fade" id="cierre" role="tabpanel" aria-labelledby="cierre">
+                          <label>ORDEN CERRADA</label>
                         </div>
                       </div>
                     </div>
