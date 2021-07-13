@@ -13,7 +13,7 @@ import { P500Component } from './views/error/500.component';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: '/pantallaprincipal/inicio',
     pathMatch: 'full',
   },
   {

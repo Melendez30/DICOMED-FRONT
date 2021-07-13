@@ -2,41 +2,16 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header bg-info">
                     DIstribuidora y Comercio de Medicamentos (DICOMED)
                 </div>
                 <div class="card-body">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-info">
-                        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-                        <!-- <button aria-controls="navbarSupportedContent" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" class="navbar-toggler" type="button" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button> -->
-
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mr-auto">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="/pantallaprincipal/inicio">Inicio<span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Registrarse</a>
-                                </li>
-                                <!-- <li class="nav-item dropdown" dropdown>
-                                    <a id="link-dropdown" class="nav-link dropdown-toggle" href dropdownToggle (click)="false" aria-controls="your-dropdown">
-                                    Dropdown
-                                    </a>
-                                    <div id="your-dropdown" class="dropdown-menu" aria-labelledby="link-dropdown" *dropdownMenu>
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                </li> -->
-
+                                <h1 align="center">SEGUIMIENTO DE ENVÍOS</h1>
                             </ul>
-                            <!-- <form class="form-inline my-2 my-lg-0">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-                                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button>
-                            </form> -->
+                            <img src="assets/LOGO.png" align="right " width="90" height="70">
                         </div>
                     </nav>
                 </div>
@@ -44,245 +19,129 @@
         </div>
     </div>
 </div>
-
-
-<h1 align="center">
-    <b>Logistica</b></h1>
 <br>
-<div align="center">
+<!-- <div align="center">
     <img src="assets/logistic.jpg" width="1100" height="350">
-</div>
-
-<br>
-<h2 align="center">Seguimiento de envíos</h2>
-
-<br>
+</div> -->
 
 <body>
-    <div class="modal fade" id="d" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <!-- <h2 class="modal-title">Seguimiento administrativo</h2> -->
-                    <h3> 
-                    <b>
-                        <img src="assets/step.jpg" align="right"  width="140" height="55" style="border:10;" > Seguimiento administrativo
-                    </b>
-                    </h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                    <!-- <p>{{ temporal | json }}</p> -->
-                    <h5>Documentación.</h5>
-                    <br>
-                    <form>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                
-                                <div clas="table-responsive">
-                                    <table class="table table-bordered" >
-                                        <thead>
-                                        <tr>
-                                            <th>Documento</th>
-                                            <th>PDF</th>
-                                            <th>Precio</th>
-                                            <th>Cantidad</th>
-                                            <th>Total</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        
-                                            <tr>
-                                            <td><b>Logistica de producto</b></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
 
-                                        <tr>
-                                            <td><b>Orden de compra</b></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
+    <div class="row">
+        <div class="container-fluid">
+            <div class="col-12 bg-light">
+                <nav>
 
-                                        <tr>
-                                            <td><b>Envío de medicamento</b></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td><b>Número de guía</b></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td><b>Pagado</b></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        
-                                        <tr>
-                                            <td><b>Por pagar</b></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                    </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div>
-                        </div>
-                         
-                        <br>
-                        <br>
-                       <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary">Subir archivo</button>
-                        </div>
-                        <span class="spacer"></span>
-                        
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <form [formGroup]="productosDetalle">
-            <div class="row">
-
-
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <i class="cil-user" style="color: black;"></i>
-                        <label for="">Quién recibe</label>
-                        <input type="text" class="form-control" placeholder="Añada el nombre de quién recibe">
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-salidas" role="tab" aria-controls="nav-home" aria-selected="true">Seguimiento de envíos</a>
+                        <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-oc" role="tab" aria-controls="nav-profile" aria-selected="false">Ordenes de compra</a>
                     </div>
-                </div>
+                </nav>
 
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <i class="cil-file" style="color: black;"></i>
-                        <label for="">Documentación</label>
-                        <input type="text" class="form-control" placeholder="Documentación">
-                        
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-productos" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <ng2-smart-table (userRowSelect)="verSalida($event)" class="table table-hover table-striped table-borderless" [source]="salidas" [settings]="settings2"> </ng2-smart-table>
                     </div>
-                </div>
-
-
-
-                <div class="col-sm-12 ">
-                    <div class="form-group">
-                        <a *ngIf="banderaeditar" class="btn btn-success fas fa-folder float-right a2" (click)="agregarproducto()" type=button>
-                        </a>
-
-                        <div *ngIf="!banderaeditar" class="btn-group float-right a2" role="group" aria-label="Basic example">
-
-                        </div>
-
-                        <!-- <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                              En transito
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                            <label class="form-check-label" for="exampleRadios2">
-                              Entregado
-                            </label>
-                        </div> -->
-
-                    </div>
-                </div>
-            </div>
-            <br>
-            <h1 align="center"><b>Logistica de productos</b></h1>
-
-            <br>
-            <span class="spacer"></span>
-        </form>
-
-
-        <!-- SE AGREGAN LAS SIGUIENTES TRES LÍNEAS -->
-        <div class="container-fluid py-12">
-            <div class="row">
-                <div class="col-lg-12 mx-auto bg-white rounded shadow">
-                    <div class="card-content table-responsive" id="body-second">
-                        <div *ngIf="!bandera">
-                            <ng2-smart-table class="table table-hover table-striped table-borderless" (custom)="abrirdetalles($event)" [source]="todosp" [settings]="settings"></ng2-smart-table>
-                        </div>
+                    <div class="tab-pane fade" id="nav-entradas" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <ng2-smart-table (userRowSelect)="verSalida($event)" class="table table-hover table-striped table-borderless" [source]="salidas" [settings]="settings3"></ng2-smart-table>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-
 </body>
 
 
-<!-- ////////// -->
-<div class="container">
-
-    <div class="animated fadeIn ">
-        <div class="row">
-
-            <div class="col-sm-6 col-lg-4">
-                <br>
-                <div class="card text-white bg-yellow">
-                    <div class="card-body pb-0 ">
-                        <button type="button" class="btn btn-transparent p-0 float-right">
-                                        <i class="fas fa-spinner"></i>
-                                    </button>
-                        <div class="text-value">STATUS</div>
-                        <div>En proceso</div>
+<div bsModal #myModal2="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    Nombre: {{ salida.nombre }}<br> Descripción: {{ salida.descripcion }}
+                </h4>
+                <button type="button" class="close" (click)="myModal2.hide()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="status-tab" data-toggle="pill" href="#status" role="tab" aria-controls="status" aria-selected="true">1 - Status</a>
+                            <a class="nav-link" id="documentos-tab" data-toggle="pill" href="#documentos" role="tab" aria-controls="documentos" aria-selected="false">2 - Documentos</a>
+                            <a class="nav-link" id="cierre-tab" data-toggle="pill" href="#cierre" role="tab" aria-controls="cierre" aria-selected="false">3 - Cierre</a>
+                        </div>
                     </div>
-                    <div class="chart-wrapper mt-2 mx-2" style="height:60px;">
-                        <canvas baseChart class="chart" lineChart2Legend></canvas>
+                    <div class="col-9">
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade show active" id="status" role="tabpanel" aria-labelledby="status">
+                                <div class="row">
+                                    <div class="col-12" [formGroup]="statusForm">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Status Actual</label>
+                                            <select [formControl]="statusForm.get('status')" class="form-control" id="exampleFormControlSelect1">
+                                          <option value="EN CAMINO">EN CAMINO</option>
+                                          <option value="ENTREGADO">ENTREGADO</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <button class="btn btn-primary float-right" (click)="cambiarStatus()">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="documentos" role="tabpanel" aria-labelledby="documentos">
+                                <ul class="list-group">
+                                    <li class="list-group-item" *ngFor="let doc of documentosPosibles">
+                                        <i *ngIf="doc.id_cat_documento == documentosSubidos.length + 1" class="fas fa-check text-success"></i>
+                                        <i *ngIf="doc.id_cat_documento != documentosSubidos.length + 1" class="fas fa-times text-danger"></i> {{ doc.nombre }}
+                                        <div class="form-group">
+                                            <input type="file" (change)="onFileSelect($event, doc.id_cat_documento)" *ngIf="doc.id_cat_documento == documentosSubidos.length + 1" class="form-control-file" id="exampleFormControlFile1">
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div>
+                                            <button (click)="subirDocumento()" class="btn btn-primary float-right">Subir</button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="cierre" role="tabpanel" aria-labelledby="cierre">
+                                <label>ORDEN CERRADA</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!--/.col-->
-
-            <div class="col-sm-6 col-lg-4">
-                <br>
-                <div class="card text-white bg-success">
-                    <div class="card-body pb-0">
-                        <div class="btn-group float-right">
-                            <button type="button" class="btn btn-transparent p-0 float-right">
-                              <i class="fas fa-check-circle"></i>
-                            </button>
-                        </div>
-                        <div class="text-value">STATUS</div>
-                        <div>Finalizado</div>
-                    </div>
-                    <div align-center>
-                        <div class="chart-wrapper mt-2 mx-2" style="height:60px;">
-                            <canvas baseChart class="chart" lineChart2Legend></canvas>
-                        </div>
-                    </div>
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="myModal2.hide(); cleanClass();">Cerrar</button>
             </div>
         </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 
-
-        <!--/.col-->
+<div bsModal #r="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">¡Atención!</h4>
+                <button type="button" class="close" (click)="r.hide()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                {{ respuesta.mensaje }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="r.hide()">Cerrar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

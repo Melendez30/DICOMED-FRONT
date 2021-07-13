@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { InventarioService } from '../../services/inventario.service';
+import {ModalDirective} from 'ngx-bootstrap/modal';
 
 declare var $:any;
 // import * as $ from 'jquery';
@@ -16,131 +17,110 @@ declare var $:any;
 
 export class LogisticaComponent implements OnInit {
 
-    nombre = '';
-    temporal;
-    settings = {
-      columns: {
-        // codigo_barras:{
-        //   title: 'Código de barras',
-        //   editable:false  
-        //   },
-          
-          nombre: {
-            title: 'Nombre',
-            editable:false
-          },
-  
-          descripcion: {
-            title: 'Descripción',
-            editable:false
-          },
 
-          cliente: {
-            title: 'Cliente',
-            editable:false
-          },
-  
-          piezas_salida: {
-            title: 'Piezas de salida',
-            editable:false
-          },
-
-          // laboratorio: {
-          //   title: 'Laboratorio',
-          //   editable:false
-          // },
-  
-          // clave_imss: {
-          //   title: 'Clave IMSS',
-          //   editable:false
-          // },
-  
-           
-  
-          // lote: {
-          //   title: 'Lote',
-          //   editable:false
-          // },
-  
-          // caducidad: {
-          //   title: 'Caducidad',
-          //   editable:false
-          // },
-  
-          fecha_salida: {
-            title: 'Fecha de salida',
-            editable:false
-          },
-     
-          num_guia: {
-            title: 'Número de guía',
-            editable:false
-          },
-
-          orden_compra: {
-            title: 'Orden de compra',
-            editable:false
-          }    
+  settings2 = {
+    columns: {
+      nombre: {
+        title: 'Nombre',
+        editable:false
       },
-      actions:{
-        custom:[
-          {
-            icon:'Detalles', title:'Detalles'
-          },
-        ],
-        columnTitle:'',
-        add:false,
-        edit:false,
-        delete:false, position: "right"
+      descripcion: {
+        title: 'Descripción',
+        editable:false
       },
-      pager:{
-        perPage:5
-        
-      }, noDataMessage:"Sin datos disponibles"
-
-    };
-
-
-    // IMPORTANTE
-    // Siempre que agregres nuevos campos al HTML, no olvidar agregarlos al formulario en el typescript, no no funciona!!
-    // Entonces PRODUCTOS (FORMGROUP) TIENE QUE SER IGUAL A PRODUCTO DETALLES! 
-    // OJO! SI EL BACKEND NO DEVUELVE LOS CAMPOS NECESARIOS O INCOMPLETOS EL FORMGROUP VA A MARCAR ERROR
-
-    productos = new FormGroup({ 
-      id_producto: new FormControl(0),
-      nombre:  new FormControl('', [Validators.required]),
-      piezas_salida: new FormControl ('', [Validators.required]),
-      fecha_salida: new FormControl ('', [Validators.required]),
-      numero_guia: new FormControl(''),
-      status: new FormControl(''),
+      cliente: {
+        title: 'Cliente',
+        editable:false
+      },
+      piezas_salida: {
+        title: 'Piezas Salida',
+        editable:false
+      },
+      fecha_salida: {
+        title: 'Fecha Salida',
+        editable:false
+      },
+      num_guia: {
+        title: 'Numero de Guia',
+        editable:false
+      },
+      orden_compra: {
+        title: 'Orden de Compra',
+        editable:false
+      },
+    },
+    actions:{
+      custom:[
+      ],
+      columnTitle:'',
+      add:false,
+      edit:false,
+      delete:false, position: "right"
+    },
+    pager:{
+      perPage:5
       
+    }, noDataMessage:"Sin datos disponibles"
+
+  };
+  salidas = [];
+  salida = {
+    nombre: '',
+    descripcion: ''
+  };
+  proceso;
+  respuesta = {
+    codigo: '',
+    detalle: '',
+    mensaje: ''
+  };
+
+  settings3 ={
+    columns:{
+      num_guia:{
+        title:'Número de guía',
+        editable: false
+      },
+      orden_compra: {
+      title: 'Orden de Compra',
+      editable:false
+      },
+      
+    },
+    actions:{
+      custom:[
+      ],
+      columnTitle:'',
+      add:false,
+      edit:false,
+      delete:false, position: "right"
+    },
+    pager:{
+      perPage:5
+      
+    }, noDataMessage:"Sin datos disponibles"
+
+  };
+  
+  documentosPosibles = [];
+  documentosSubidos = [];
+  @ViewChild('myModal2') public myModal2: ModalDirective;
+  @ViewChild('r') public r: ModalDirective;
+
+  statusForm = new FormGroup({
+    id_salida_status: new FormControl(0),
+    id_salida: new FormControl(0),
+    status: new FormControl('EN CAMINO', [Validators.required])
   });
 
-      productosDetalle = new FormGroup({ 
-      id_envio: new FormControl(0),
-      codigo_barras: new FormControl(''),
-      nombre:  new FormControl('', [Validators.required]),
-      descripcion: new FormControl('', [Validators.required]),
-      piezas_salida: new FormControl ('', [Validators.required]),
-      cliente: new FormControl ('', [Validators.required]),
-      num_guia: new FormControl(''),
-      orden_compra: new FormControl(''),
-      
-      
+  uploadForm = new FormGroup({
+    file: new FormControl('', [Validators.required]),
+    id_cat_documento: new FormControl(0),
+    id_salida: new FormControl(0),
   });
 
-    busqueda = new FormGroup({ 
-      busqueda:  new FormControl('', [Validators.required]), 
- });
-
-  todosp=[];
-  banderaeditar:boolean=true;
-
-  bandera:boolean=true;
-
-hi(){
-
-}
+  id_cat_doc = 0;
+  id_salida = 0;
 
   constructor(
     private router: Router, 
@@ -148,145 +128,176 @@ hi(){
     ) { }
 
   ngOnInit(): void {
-          this.buscarproducto();     
-
+    this.listaSalidas();
   }
 
-abrirdetalles(event){
-  console.log(event);
-  this.nombre = event.data.nombre;
-  this.temporal = event.data;
-  this.productosDetalle.patchValue(event.data);
-  this.banderaeditar=false;
-  $('#d').modal('show');
-}
-
-cancelaredicion(){
-  this.productosDetalle.reset();
-  this.banderaeditar=true;
-}
-
-acciones(event){
-  switch(event.action){
-    case "Editar":
-      this.abrirdetalles(event)
-      break;
-    case "Eliminar":
-      this.eliminarproducto(event)
-      break;
-    default: 
-      break;
-  }
-}
-////////
-  eliminarproducto(event) {
-    let json={
-      id:event.data.id_salida
-    }
-        this.inventarioService.salidaeliminar(json).subscribe({
-      next:(rest: any) => {
-        console.log(rest)
+  subirDocumento(){
+    var formdata = new FormData();
+    formdata.append('file', this.uploadForm.get('file').value);
+    formdata.append('id_cat_documento', this.uploadForm.get('id_cat_documento').value);
+    formdata.append('id_salida', this.uploadForm.get('id_salida').value);
+    this.inventarioService.subirDocumento(formdata).subscribe({
+      next:(res: any) => {
+        this.respuesta = res;
       },
-      error:(err)=>{
+      error:(err) => {
         console.log(err);
       },
-      complete:()=>{
-        this.buscarproducto();
+      complete:() => {
+        if(this.respuesta.codigo == 'OK'){
+          this.verStatus(this.uploadForm.get('id_salida').value);
+          this.consultardocumentosSubidos(this.uploadForm.get('id_salida').value);
+          this.cleanClass();
+        }
+        this.r.show();
       }
-    }) 
-
+    });
   }
 
-////////
-buscarproducto(){
-  this.bandera=true;
-    this.inventarioService.salidatodos().subscribe({
-      next:(rest: any) => {
-        this.todosp=rest
-      },
-      error:(err)=>{
-        console.log(err);
-      },
-      complete:()=>{
-        this.bandera=false
-        // console.log(this.todosp);
+  onFileSelect(event, id_cat_doc) {
+    this.uploadForm.get('id_cat_documento').patchValue(id_cat_doc);
+    this.uploadForm.get('id_salida').patchValue(this.proceso.id_salida);
+    var name = event.target.files[0].name;
+    if (name.slice(-4) == '.pdf') {
+      if (event.target.files.length > 0) {
+        const file = event.target.files[0];
+        this.uploadForm.get('file').setValue(file);
       }
-    })  
     }
+  }
 
 
-////////
-  agregarproducto(){
-    this.inventarioService.registrarsalida(this.productosDetalle.value).subscribe({
-      next:(rest: any) => {
-
+  consultardocumentosSubidos(id_salida){
+    let json = {
+      id_salida: id_salida
+    }
+    this.inventarioService.consultarDocumentosSubidos(json).subscribe({
+      next:(res: any) => {
+        this.documentosSubidos = res;
       },
-      error:(err)=>{
+      error:(err) => {
         console.log(err);
       },
-      complete:()=>{
-      this.buscarproducto();     
-      this.productosDetalle.reset();
+      complete:() => {
+
+      }
+    });
   }
+
+  consultardocumentosPosibles(){
+    this.inventarioService.consultarDocumentosPosibles().subscribe({
+      next:(res: any) => {
+        this.documentosPosibles = res;
+      },
+      error:(err) => {
+        console.log(err);
+      },
+      complete:() => {
+
+      }
+    });
+  }
+
+  cambiarStatus(){
+    // let json = {
+    //   id_salida_status: this.statusForm.get('id_salida_status').value,
+    //   status: this.statusForm.get('status').value
+    // }
+    this.inventarioService.cambiarStatus(this.statusForm.value).subscribe({
+      next:(res: any) => {
+        this.respuesta = res;
+      },
+      error:(err) => {
+        console.log(err);
+      },
+      complete:() => {
+        if(this.respuesta.codigo == 'OK'){
+          this.verStatus(this.statusForm.get('id_salida').value);
+        }
+        this.r.show();
+      }
+    });
+  }
+
+  cleanClass(){
+    $('#status-tab').removeClass('isDisabled');    
+    $('#documentos-tab').removeClass('isDisabled');
+    $('#cierre-tab').removeClass('isDisabled');    
+  }
+
+  consultarStatus(id_salida){
+    let json = {
+      id_salida: id_salida
+    };
+    this.inventarioService.consultarStatus(json).subscribe({
+      next:(res: any) => {
+        this.statusForm.patchValue(res);
+      },
+      error:(err) => {
+        console.log(err);
+      },
+      complete:() => {
+        
+      }
+    });
+  }
+  
+  verStatus(id_salida){
+    let json = {
+      id_salida: id_salida
+    }
+    this.inventarioService.consultarStatusSalida(json).subscribe({
+      next:(resp: any) => {
+        this.proceso = resp;
+      },
+      error:(err) => {
+        console.log(err);
+      },
+      complete:() => {
+        this.cleanClass();
+        if(this.proceso.id_cat_logistica == 1){
+          $('#status-tab').tab('show');
+          $('#documentos-tab').addClass('isDisabled');
+          $('#cierre-tab').addClass('isDisabled');
+        }
+        if(this.proceso.id_cat_logistica == 2){
+          $('#documentos-tab').tab('show');
+          $('#status-tab').addClass('isDisabled');
+          $('#cierre-tab').addClass('isDisabled');
+        }
+        if(this.proceso.id_cat_logistica == 3){
+          $('#cierre-tab').tab('show');
+          $('#documentos-tab').addClass('isDisabled');
+          $('#status-tab').addClass('isDisabled');
+        }
+        if(this.proceso.id_cat_logistica == null || undefined){
+
+        }
+        this.myModal2.show();
+      }
     })
   }
-
-  tomarproducto(producto){
-    console.log(producto);
-      this.productos.patchValue(producto);
+  
+  verSalida(event){
+    this.salida = event.data;
+    this.verStatus(event.data.id_salida);
+    this.consultardocumentosSubidos(event.data.id_salida);
+    this.consultarStatus(event.data.id_salida);
+    this.consultardocumentosPosibles();
   }
 
-////////
-  editarproducto(){
-    this.inventarioService.salidaactualizar(this.productosDetalle.value).subscribe({
-      next:(rest: any) => {
-        console.log(rest)
+  listaSalidas(){
+    this.inventarioService.tablaSalidas().subscribe({
+      next:(resp: any) => {
+        this.salidas = resp;
       },
-      error:(err)=>{
+      error:(err) => {
         console.log(err);
       },
-      complete:()=>{
-        this.buscarproducto()
-        this.productosDetalle.reset();
+      complete:() => {
+
+      }
+    });
   }
-    })
-      
-  }
-////////
-
-//  guardarproducto(){
-
-  //}
-
-
-///////
-  salir(){
-   
-    
-    //ir al backend
-    //usuario
-    
-this.router.navigate(['./auth'])
 
 }
-
-codigobarras(){
-  let json={
-    codigo: this.productosDetalle.get("codigo_barras").value
-  }
-      this.inventarioService.buscarcodigobarras(json).subscribe({
-    next:(rest: any) => {
-      console.log(rest)
-      this.productosDetalle.get("nombre").patchValue(rest[0].nombre);
-      this.productosDetalle.get("clave_imss").patchValue(rest[0].clave_imss);
-      this.productosDetalle.get("descripcion").patchValue(rest[0].descripcion);
-
-    },
-    error:(err)=>{
-      console.log(err);
-    },
-    complete:()=>{
-      
-    }
-  }) 
-}}

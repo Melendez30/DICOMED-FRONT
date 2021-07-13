@@ -14,7 +14,7 @@ export const navItems: INavData[] = [
 
 
   {
-    name: 'Inventario',
+    name: 'Productos',
     icon: 'cil-list',
     children: [
       {
@@ -35,7 +35,7 @@ export const navItems: INavData[] = [
         
       },
       {
-        name: 'Lista de productos',
+        name: 'Inventario',
         url: '/inventario/productos',
         icon: 'icon-list',
       },  
@@ -49,13 +49,18 @@ export const navItems: INavData[] = [
     icon: 'cil-map',
   },
 
-  {
-    name: 'Seguimiento administrativo',
-    url: '',
-    icon: 'fas fa-check-double',
+  // {
+  //   name: 'Ordenes de compra',
+  //   url: '',
+  //   icon: 'fas fa-check-double',
 
-  },
+  // },
 
+    {
+      name: 'Finanzas', 
+      url: '/inventario/finanzas',
+      icon: 'far fa-chart-bar',
+    },
     {
     name: 'Ventas',
     url: '/inventario/ventas',
@@ -68,63 +73,63 @@ export const navItems: INavData[] = [
       icon: 'cil-dollar',
     },
 
-    {
-      name: 'Cotizaciones',
-      url: '',
-      icon: 'cil-file',
-    },
+  //   {
+  //     name: 'Cotizaciones',
+  //     url: '',
+  //     icon: 'cil-file',
+  //   },
 
-    {
-      name: 'Clientes',
-      url: '',
-      icon: 'cil-group',
-    },
+  //   {
+  //     name: 'Clientes',
+  //     url: '',
+  //     icon: 'cil-group',
+  //   },
 
-    {
-      name: 'Proveedores',
-      icon: 'cil-truck',
-      children: [
-        {
-          name: 'Creación de proveedor',
-          url: '/proveedores/agregar',
-          icon: 'icon-plus',
-        }
-
-
+  //   {
+  //     name: 'Proveedores',
+  //     icon: 'cil-truck',
+  //     children: [
+  //       {
+  //         name: 'Creación de proveedor',
+  //         url: '/proveedores/agregar',
+  //         icon: 'icon-plus',
+  //       }
 
 
-      ],
-    },
 
-    {
-      name: 'Catalogo',
-      url: '',
-      icon: 'cil-view-quilt',
-    },
 
-    {
-      name: 'Reportes',
-      url: '',
-      icon: 'cil-task',
-  },
+  //     ],
+  //   },
 
-  {
-    name: 'Contacto',
-    url: '/pantallaprincipal/contacto',
-    icon: 'cil-envelope-closed',
-  },
+  //   {
+  //     name: 'Catalogo',
+  //     url: '',
+  //     icon: 'cil-view-quilt',
+  //   },
 
-  {
-    name: 'Nosotros',
-    url: '',
-    icon: 'cil-people',
-  },
+  //   {
+  //     name: 'Reportes',
+  //     url: '',
+  //     icon: 'cil-task',
+  // },
 
-  {
-    name: 'Servicios',
-    url: '',
-    icon: 'cil-settings',
-  },
+  // {
+  //   name: 'Contacto',
+  //   url: '/pantallaprincipal/contacto',
+  //   icon: 'cil-envelope-closed',
+  // },
+
+  // {
+  //   name: 'Nosotros',
+  //   url: '',
+  //   icon: 'cil-people',
+  // },
+
+  // {
+  //   name: 'Servicios',
+  //   url: '',
+  //   icon: 'cil-settings',
+  // },
 
   {
     name: 'Administración Acceso',

@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
 export class InventarioService {
 
   protocolo='http';
-  url = '192.168.1.79:3000'
-  
+  url = 'localhost:3000'
+
 
     constructor(private http:HttpClient) { 
     }
@@ -80,7 +80,7 @@ export class InventarioService {
 
 
 
-
+/************************************************************************************************************************/
 
       
 
@@ -88,12 +88,55 @@ export class InventarioService {
         return this.http.post(`${this.protocolo}://${this.url}/articulos`, null);
       }
 
-
-      entradaarcticulos(){
-        return this.http.post(`${this.protocolo}://${this.url}/productos/entrada/alta`, null);
+      altaproducto(parametros){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/alta`, parametros);
       }
 
+      consultaproductos(){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/listado`, null)
+      }
 
+      darEntrada(parametros){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/entrada/alta`, parametros);
+      }
 
+      consultarTablaGeneral(){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/general`, null);
+      }
 
+      darSalida(parametros){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/salida/alta`, parametros)
+      }
+
+      tablaEntradas(){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/entrada/lista`, null)
+      }
+
+      tablaSalidas(){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/salida/lista`, null)
+      }
+
+      consultarStatusSalida(parametro){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/logistica/proceso`, parametro)
+      }
+
+      consultarStatus(parametro){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/logistica/status`, parametro)
+      }
+
+      cambiarStatus(parametro){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/logistica/status/actualizar`, parametro)
+      }
+
+      consultarDocumentosPosibles(){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/logistica/documentos`, null)
+      }
+
+      consultarDocumentosSubidos(parametro){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/logistica/documentos/lista`, parametro)
+      }
+
+      subirDocumento(parametros){
+        return this.http.post(`${this.protocolo}://${this.url}/productos/logistica/documentos/subir`, parametros);
+      }
 }
